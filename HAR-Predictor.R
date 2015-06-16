@@ -38,14 +38,8 @@ testing = harTrainSet_clean[-inTrain, ]
 # We set the variable y to be a factor variable in both the training set. 
 training$classe <- factor(training$classe)
 
-model <- train(training$classe~.,
-               preProcess = "pca", 
-               data=training,
-               method="glm",
-               trControl = trainControl(method = "oob"))
-
 # We now try different marchine learning algorithms and check their accuracy.
-# I could not make the glm training model work so I tried RPART and RF
+# Note: I could not make the glm training model work so I tried RPART and RF (Something is wrong; all the Accuracy metric values are missing)
 
 # Use the Recursive Partitioning and Regression Trees methodlogy to predict the class outcome (classe)
 model<-train(Class ~ ., data = training, method = "rpart")
