@@ -1,0 +1,105 @@
+Weight Lifting Exercises Analysis
+
+Velloso, E.; Bulling, A.; Gellersen, H.; Ugulino, W.; Fuks, H. 
+Qualitative Activity Recognition of Weight Lifting Exercises. Proceedings of 4th International Conference in Cooperation 
+with SIGCHI (Augmented Human '13) . Stuttgart, Germany: ACM SIGCHI, 2013.
+Source: http://groupware.les.inf.puc-rio.br/har
+
+1.	First we look at the training data set and we can observe that there is a very long list of predictors, 
+156 in total with the last variable, “classe”, the outcome we are trying to build a prediction model for.
+
+ [1] "X"                        "user_name"                "raw_timestamp_part_1"     "raw_timestamp_part_2"    
+ [5] "cvtd_timestamp"           "new_window"               "num_window"               "roll_belt"               
+ [9] "pitch_belt"               "yaw_belt"                 "total_accel_belt"         "kurtosis_roll_belt"      
+ [13] "kurtosis_picth_belt"      "kurtosis_yaw_belt"        "skewness_roll_belt"       "skewness_roll_belt.1"    
+ [17] "skewness_yaw_belt"        "max_roll_belt"            "max_picth_belt"           "max_yaw_belt"            
+ [21] "min_roll_belt"            "min_pitch_belt"           "min_yaw_belt"             "amplitude_roll_belt"     
+ [25] "amplitude_pitch_belt"     "amplitude_yaw_belt"       "var_total_accel_belt"     "avg_roll_belt"           
+ [29] "stddev_roll_belt"         "var_roll_belt"            "avg_pitch_belt"           "stddev_pitch_belt"       
+ [33] "var_pitch_belt"           "avg_yaw_belt"             "stddev_yaw_belt"          "var_yaw_belt"            
+ [37] "gyros_belt_x"             "gyros_belt_y"             "gyros_belt_z"             "accel_belt_x"            
+ [41] "accel_belt_y"             "accel_belt_z"             "magnet_belt_x"            "magnet_belt_y"           
+ [45] "magnet_belt_z"            "roll_arm"                 "pitch_arm"                "yaw_arm"                 
+ [49] "total_accel_arm"          "var_accel_arm"            "avg_roll_arm"             "stddev_roll_arm"         
+ [53] "var_roll_arm"             "avg_pitch_arm"            "stddev_pitch_arm"         "var_pitch_arm"           
+ [57] "avg_yaw_arm"              "stddev_yaw_arm"           "var_yaw_arm"              "gyros_arm_x"             
+ [61] "gyros_arm_y"              "gyros_arm_z"              "accel_arm_x"              "accel_arm_y"             
+ [65] "accel_arm_z"              "magnet_arm_x"             "magnet_arm_y"             "magnet_arm_z"            
+ [69] "kurtosis_roll_arm"        "kurtosis_picth_arm"       "kurtosis_yaw_arm"         "skewness_roll_arm"       
+ [73] "skewness_pitch_arm"       "skewness_yaw_arm"         "max_roll_arm"             "max_picth_arm"           
+ [77] "max_yaw_arm"              "min_roll_arm"             "min_pitch_arm"            "min_yaw_arm"             
+ [81] "amplitude_roll_arm"       "amplitude_pitch_arm"      "amplitude_yaw_arm"        "roll_dumbbell"           
+ [85] "pitch_dumbbell"           "yaw_dumbbell"             "kurtosis_roll_dumbbell"   "kurtosis_picth_dumbbell" 
+ [89] "kurtosis_yaw_dumbbell"    "skewness_roll_dumbbell"   "skewness_pitch_dumbbell"  "skewness_yaw_dumbbell"   
+ [93] "max_roll_dumbbell"        "max_picth_dumbbell"       "max_yaw_dumbbell"         "min_roll_dumbbell"       
+ [97] "min_pitch_dumbbell"       "min_yaw_dumbbell"         "amplitude_roll_dumbbell"  "amplitude_pitch_dumbbell"
+[101] "amplitude_yaw_dumbbell"   "total_accel_dumbbell"     "var_accel_dumbbell"       "avg_roll_dumbbell"       
+[105] "stddev_roll_dumbbell"     "var_roll_dumbbell"        "avg_pitch_dumbbell"       "stddev_pitch_dumbbell"   
+[109] "var_pitch_dumbbell"       "avg_yaw_dumbbell"         "stddev_yaw_dumbbell"      "var_yaw_dumbbell"        
+[113] "gyros_dumbbell_x"         "gyros_dumbbell_y"         "gyros_dumbbell_z"         "accel_dumbbell_x"        
+[117] "accel_dumbbell_y"         "accel_dumbbell_z"         "magnet_dumbbell_x"        "magnet_dumbbell_y"       
+[121] "magnet_dumbbell_z"        "roll_forearm"             "pitch_forearm"            "yaw_forearm"             
+[125] "kurtosis_roll_forearm"    "kurtosis_picth_forearm"   "kurtosis_yaw_forearm"     "skewness_roll_forearm"   
+[129] "skewness_pitch_forearm"   "skewness_yaw_forearm"     "max_roll_forearm"         "max_picth_forearm"       
+[133] "max_yaw_forearm"          "min_roll_forearm"         "min_pitch_forearm"        "min_yaw_forearm"         
+[137] "amplitude_roll_forearm"   "amplitude_pitch_forearm"  "amplitude_yaw_forearm"    "total_accel_forearm"     
+[141] "var_accel_forearm"        "avg_roll_forearm"         "stddev_roll_forearm"      "var_roll_forearm"        
+[145] "avg_pitch_forearm"        "stddev_pitch_forearm"     "var_pitch_forearm"        "avg_yaw_forearm"         
+[149] "stddev_yaw_forearm"       "var_yaw_forearm"          "gyros_forearm_x"          "gyros_forearm_y"         
+[153] "gyros_forearm_z"          "accel_forearm_x"          "accel_forearm_y"          "accel_forearm_z"         
+[157] "magnet_forearm_x"         "magnet_forearm_y"         "magnet_forearm_z"         "classe"
+
+2.	It makes sense to select only the best predictors in the training and test sets. 
+To do so, we weed out poor predictors which exhibit little or no variance (i.e. close to being constants) using 
+the nearZeroVar function
+a.	In addition we remove predictors which intuitively do not correlate with the outcome “classe” such as the name of the  , time of day, the window data. These should have little bearing on predicting the  5 classes: sitting-down, standing-up, standing, walking, and sitting
+b.	This leaves us with a streamlined list of better predictors (52 in total) which we focus on to build the best prediction model
+
+"roll_belt"   "pitch_belt"   "yaw_belt"   "total_accel_belt"     "gyros_belt_x"  "gyros_belt_y"         
+"gyros_belt_z"    "accel_belt_x"   "accel_belt_y"  "accel_belt_z"   "magnet_belt_x" "magnet_belt_y"        
+"magnet_belt_z"   "roll_arm"    "pitch_arm"  "yaw_arm"  "total_accel_arm"      "gyros_arm_x"  "gyros_arm_y"   
+"gyros_arm_z" "accel_arm_x""accel_arm_y" "accel_arm_z" "magnet_arm_x" "magnet_arm_y" "magnet_arm_z" "roll_dumbbell"  
+"pitch_dumbbell"  yaw_dumbbell"  "total_accel_dumbbell" "gyros_dumbbell_x"  "gyros_dumbbell_y"     
+gyros_dumbbell_z"    accel_dumbbell_x"     "accel_dumbbell_y"     "accel_dumbbell_z"     magnet_dumbbell_x"    
+"magnet_dumbbell_y"   "magnet_dumbbell_z"    "roll_forearm"  "pitch_forearm"        "yaw_forearm"          
+"gyros_forearm_x"     "gyros_forearm_y"      "gyros_forearm_z" "accel_forearm_x"      "accel_forearm_y"      
+"accel_forearm_z"     "magnet_forearm_x"     "magnet_forearm_y"     "magnet_forearm_z"
+
+3.	After sub-setting the training and test sets with this more concise list of predictors, we now try different 
+machine learning prediction algorithms and check for their accuracy.
+a.	GLM: I could not make the glm training model work (error: Something is wrong; all the Accuracy metric values are missing)
+i.	No accuracy Results 
+
+b.	RPART: the Use of the Recursive Partitioning and Regression Trees methodology to predict the class outcome (classe) 
+shows close to a 50% level of accuracy. This is pretty poor
+i.	Output of the model shows a 49% accuracy:
+# Prediction    A    B    C    D    E
+#          A 1518  449  460  399  159
+#          B   29  386   34  184  149
+#          C  122  304  532  381  297
+#          D    0    0    0    0    0
+#          E    5    0    0    0  477
+# 
+# Overall Statistics
+# 
+# Accuracy : 0.495           
+# 95% CI : (0.4821, 0.5078)
+
+c.	RF: the use  random forest methodology with out of bag to predict the class outcome (classe) yields close to a 99% 
+level of accuracy. Which is very good even though it is maybe too optimistic
+i.	 Output of the model shows a 99% accuracy:
+# Prediction    A    B    C    D    E
+#          A 1673   12    0    0    0
+#          B    0 1124    3    0    0
+#          C    0    3 1018   10    1
+#          D    0    0    5  953    5
+#          E    1    0    0    1 1076
+# 
+# Overall Statistics
+# 
+# Accuracy : 0.993          
+# 95% CI : (0.9906, 0.995)   
+
+4.	Finally, we use run the highest accuracy model  (99%) - the Random Forest model - against the real test data set
+a.	The model returns the following predictions against the 20 test cases which after submission gave 100% of correct results:
+# [1] B A B A A E D B A A B C B A E E A B B B
