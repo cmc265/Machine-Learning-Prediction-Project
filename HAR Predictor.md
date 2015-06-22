@@ -71,7 +71,7 @@ Test the Recursive Partitioning and Regression Trees model against the trainig s
 ```
 predictions <- predict(model, newdata = testing)
 ```
-Cross check : Review the predictions and level or accuracy of the model
+####Cross Validation : Review the predictions and level or accuracy of the model
 ```
 c1 <- confusionMatrix(predictions, testing$classe)
 c1
@@ -98,7 +98,7 @@ model <- train(training$classe~.,
                method = "rf",
                trControl = trainControl(method = "oob"))
 ```
-Cross check - Test the Random Fores model against the trainig set (30% of the orginal training file)
+#### Cross Validate - Test the Random Fores model against the trainig set (30% of the orginal training file)
 ```
 predictions <- predict(model, newdata = testing)
 ```
