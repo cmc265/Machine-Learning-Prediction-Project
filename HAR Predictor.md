@@ -1,5 +1,5 @@
 Machine-Learning-Prediction-Project
-Coursera ML Course Project <h6>
+Coursera ML Course Project <h8>
 
 ```
 library(dplyr)
