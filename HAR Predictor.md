@@ -20,7 +20,7 @@ To do so, we weed out poor predictors which exhibit little or no variance (i.e. 
 ```
 nearZero <- nearZeroVar(harTrainSet, saveMetrics = TRUE)
 ```
-We identify and removepredictors that are flagges as near zero  <h6>
+We identify and removepredictors that are flagges as near zero  <h8>
 ```
 nearZero$nzv
 ```
