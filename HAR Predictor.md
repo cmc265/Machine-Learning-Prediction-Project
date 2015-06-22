@@ -2,7 +2,7 @@
 Coursera ML Course Project
 Machine-Learning-Prediction-Project Coursera ML Course Project
 
-##2 Data set reference
+## Data set reference
 Velloso, E.; Bulling, A.; Gellersen, H.; Ugulino, W.; Fuks, H. 
 Qualitative Activity Recognition of Weight Lifting Exercises. 
 Proceedings of 4th International Conference in Cooperation with SIGCHI (Augmented Human '13) . 
@@ -113,7 +113,7 @@ Prediction    A    B    C    D    E
  Accuracy : 0.993          
  95% CI : (0.9906, 0.995)   
 ```
-##2 Conclusion 
+## Conclusion 
 We use run the highest accuracy model (99%) - the Random Forest model - against the real test data set (20)
 ```
 predict(model, newdata = harTestSet_clean)
