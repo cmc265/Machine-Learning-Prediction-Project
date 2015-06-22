@@ -2,6 +2,12 @@ library(dplyr)
 library(caret)
 library(randomForest)
 
+# Data set reference
+# Velloso, E.; Bulling, A.; Gellersen, H.; Ugulino, W.; Fuks, H. 
+# Qualitative Activity Recognition of Weight Lifting Exercises. 
+# Proceedings of 4th International Conference in Cooperation with SIGCHI (Augmented Human '13) . 
+# Stuttgart, Germany: ACM SIGCHI, 2013.
+
 # We start by reading the data for test and training sets and activity labels
 harTrainSet <- read.csv("pml-training.csv")
 harTestSet <- read.csv("pml-testing.csv")
