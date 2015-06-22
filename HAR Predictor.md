@@ -62,14 +62,17 @@ We set the variable y to be a factor variable in both the training set.
 training$classe <- factor(training$classe)
 ```
 We now try different marchine learning algorithms and check their accuracy. Note: I could not make the glm training model work so I tried RPART and RF (Something is wrong; all the Accuracy metric values are missing)
-Use the Recursive Partitioning and Regression Trees methodlogy to predict the class outcome (classe)
+
+### Use the Recursive Partitioning and Regression Trees methodlogy to predict the class outcome (classe)
 ```
 model<-train(Class ~ ., data = training, method = "rpart")
 ```
 Test the Recursive Partitioning and Regression Trees model against the trainig set (30% of the orginal training file)
 ```
 predictions <- predict(model, newdata = testing)
-Review the predictions and level or accuracy of the model
+```
+Cross check : Review the predictions and level or accuracy of the model
+```
 c1 <- confusionMatrix(predictions, testing$classe)
 c1
 ```
@@ -87,13 +90,15 @@ Output of the model shows a 49% accuracy - see below: Confusion Matrix and Stati
 
  Accuracy : 0.495           
  95% CI : (0.4821, 0.5078)
-Cross check: Try now the random forest methodlogy to predict the class outcome (classe)
+```
+### Use now the random forest methodlogy to predict the class outcome (classe)
 ```
 model <- train(training$classe~., 
                data=training, 
                method = "rf",
                trControl = trainControl(method = "oob"))
-Test the Random Fores model against the trainig set (30% of the orginal training file)
+```
+Cross check - Test the Random Fores model against the trainig set (30% of the orginal training file)
 ```
 predictions <- predict(model, newdata = testing)
 ```
