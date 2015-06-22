@@ -20,7 +20,11 @@ We start by reading the data for test and training sets and activity labels
 harTrainSet <- read.csv("pml-training.csv")
 harTestSet <- read.csv("pml-testing.csv")
 ```
-There is a very long list of predictors and we select only the best predictors in the training and test sets To do so, we weed out poor predictors which exhibit little or no variance (i.e. close to being constants)
+First we look at the training data set and we can observe that there is a very long list of predictors, 156 in total with the last variable, “classe”, the outcome we are trying to build a prediction model for.
+
+It makes sense to select only the best predictors in the training and test sets. To do so, we weed out poor predictors which exhibit little or no variance (i.e. close to being constants) using the nearZeroVar function
+In addition we remove predictors which intuitively do not correlate with the outcome “classe” such as the name of the  , time of day, the window data. These should have little bearing on predicting the  5 classes: sitting-down, standing-up, standing, walking, and sitting
+To do so, we weed out poor predictors which exhibit little or no variance (i.e. close to being constants)
 ```
 nearZero <- nearZeroVar(harTrainSet, saveMetrics = TRUE)
 ```
@@ -28,7 +32,7 @@ We identify and removepredictors that are flagges as near zero
 ```
 nearZero$nzv
 ```
-Finally, we remove predictors which intuitively will not correlate with te outcome such as the name , time of day etc. This leaves us with the following list of better predictors
+Finally, we remove predictors which intuitively will not correlate with te outcome such as the name , time of day etc.This leaves us with a streamlined list of better predictors (52 in total) which we focus on to build the best prediction model
 ```
 "roll_belt"            "pitch_belt"           "yaw_belt"          
 "total_accel_belt"     "gyros_belt_x"         "gyros_belt_y"         "gyros_belt_z"         "accel_belt_x"        
