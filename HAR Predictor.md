@@ -1,4 +1,4 @@
-##1 Machine-Learning-Prediction-Project
+# Machine-Learning-Prediction-Project
 Coursera ML Course Project
 Machine-Learning-Prediction-Project Coursera ML Course Project
 
@@ -8,7 +8,7 @@ Qualitative Activity Recognition of Weight Lifting Exercises.
 Proceedings of 4th International Conference in Cooperation with SIGCHI (Augmented Human '13) . 
 Stuttgart, Germany: ACM SIGCHI, 2013.
 
-##2 Coursera Write-up
+## Coursera Write-up
 ```
 library(dplyr)
 library(caret)
