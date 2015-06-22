@@ -9,6 +9,7 @@ Proceedings of 4th International Conference in Cooperation with SIGCHI (Augmente
 Stuttgart, Germany: ACM SIGCHI, 2013.
 
 ## Coursera Write-up
+Load the appropriate R packages
 ```
 library(dplyr)
 library(caret)
