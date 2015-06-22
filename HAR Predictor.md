@@ -1,5 +1,5 @@
 Machine-Learning-Prediction-Project
-Coursera ML Course Project <h3>
+Coursera ML Course Project <h6>
 
 ```
 library(dplyr)
@@ -7,7 +7,7 @@ library(caret)
 library(randomForest)
 ```
 
-We start by reading the data for test and training sets and activity labels  <h3>
+We start by reading the data for test and training sets and activity labels  <h6>
 
 ```
 harTrainSet <- read.csv("pml-training.csv")
