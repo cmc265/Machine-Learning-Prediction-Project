@@ -1,5 +1,5 @@
-Machine-Learning-Prediction-Project <h6>
-Coursera ML Course Project
+Machine-Learning-Prediction-Project
+Coursera ML Course Project <h6>
 
 ```
 library(dplyr)
@@ -7,20 +7,20 @@ library(caret)
 library(randomForest)
 ```
 
-We start by reading the data for test and training sets and activity labels
+We start by reading the data for test and training sets and activity labels  <h6>
 
 ```
 harTrainSet <- read.csv("pml-training.csv")
 harTestSet <- read.csv("pml-testing.csv")
 ```
 
-There is a very long list of predictors and we select only the best predictors in the training and test sets
-To do so, we weed out poor predictors which exhibit little or no variance (i.e. close to being constants)
+There is a very long list of predictors and we select only the best predictors in the training and test sets  <h6>
+To do so, we weed out poor predictors which exhibit little or no variance (i.e. close to being constants)  <h6>
 
 ```
 nearZero <- nearZeroVar(harTrainSet, saveMetrics = TRUE)
 ```
-We identify and removepredictors that are flagges as near zero
+We identify and removepredictors that are flagges as near zero  <h6>
 ```
 nearZero$nzv
 ```
