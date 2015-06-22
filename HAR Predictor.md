@@ -97,7 +97,8 @@ Review the predictions and level or accuracy of the model
 c1 <- confusionMatrix(predictions, testing$classe)
 c1
 ```
-Output of the model shows a 99% accuracy (likely optimistic due to outfitting) - see below: Confusion Matrix and Statistics
+Output of the model shows a 99% accuracy (likely optimistic due to outfitting) - see below: 
+Confusion Matrix and Statistics
 ```
 Reference
 Prediction    A    B    C    D    E
@@ -112,7 +113,8 @@ Prediction    A    B    C    D    E
  Accuracy : 0.993          
  95% CI : (0.9906, 0.995)   
 ```
-Finally, we use run the highest accuracy model (99%) - the Random Forest model - against the real test data set (20)
+##2 Conclusion 
+We use run the highest accuracy model (99%) - the Random Forest model - against the real test data set (20)
 ```
 predict(model, newdata = harTestSet_clean)
 ```
